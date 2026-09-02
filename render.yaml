@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: free-claude-code-proxy
+    runtime: docker
+    plan: free
+    region: oregon
+    dockerfilePath: Dockerfile
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: HOST
+        value: 0.0.0.0
+      - key: ANTHROPIC_AUTH_TOKEN
+        value: freecc
+      - key: MODEL
+        value: groq/openai/gpt-oss-120b
+      - key: MODEL_SONNET
+        value: groq/qwen/qwen3.8-27b
+      - key: MODEL_OPUS
+        value: groq/qwen/qwen3.6-27b
+      - key: MODEL_HAIKU
+        value: groq/qwen/qwen3.8-27b
+      - key: MODEL_FABLE
+        value: open_router/minimax/minimax-m3:free
+      - key: MODEL_FALLBACKS
+        value: groq/qwen/qwen3.8-27b,groq/qwen/qwen3.6-27b,groq/openai/gpt-oss-120b,open_router/minimax/minimax-m3:free
+      - key: GROQ_API_KEY
+        sync: false
+      - key: OPENROUTER_API_KEY
+        sync: false
+      - key: NVIDIA_NIM_API_KEY
+        sync: false
